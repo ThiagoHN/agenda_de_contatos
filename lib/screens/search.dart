@@ -1,6 +1,6 @@
 import 'package:agenda_de_contatos/models/contato.dart';
 import 'package:agenda_de_contatos/provider/contatos_provider.dart';
-import 'package:agenda_de_contatos/screens/criadorconta.dart';
+import 'package:agenda_de_contatos/screens/criadorcontato.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
