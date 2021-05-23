@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.lightBlue,
         ),
         home: Consumer<UsuarioProvider>(
             builder: (ctx, usuarios, _) => usuarios.estaLogado

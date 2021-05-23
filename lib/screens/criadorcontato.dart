@@ -79,7 +79,7 @@ class _CriadorContato extends State<CriadorContato> {
                     },
                     validator: (value) {
                       if (value.isEmpty)
-                        return 'Valor da conta inválido, digite o nome novamente!';
+                        return 'O campo está vazio! Favor escrever algo!';
                       return null;
                     },
                   ),

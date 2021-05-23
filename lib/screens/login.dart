@@ -61,8 +61,8 @@ class _LoginState extends State<Login> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.red[700],
-                Colors.yellow[500],
+                Colors.green[700],
+                Colors.blue[500],
               ],
             )),
           ),
@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
                     child: Column(
                       children: [
                         Text(
-                          'Controle de Contas',
+                          'Agenda de Contatos',
                           style: TextStyle(
                             fontSize: 40,
                           ),
