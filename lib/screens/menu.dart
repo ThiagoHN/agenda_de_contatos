@@ -1,6 +1,6 @@
 import 'package:agenda_de_contatos/provider/contatos_provider.dart';
 import 'package:agenda_de_contatos/screens/contato_info.dart';
-import 'package:agenda_de_contatos/screens/criadorconta.dart';
+import 'package:agenda_de_contatos/screens/criadorcontato.dart';
 import 'package:agenda_de_contatos/provider/usuarios_provider.dart';
 import 'package:agenda_de_contatos/screens/search.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class Menu extends StatelessWidget {
                   child: DrawerHeader(
                       decoration:
                           BoxDecoration(color: Theme.of(context).primaryColor),
-                      child: Text('Controlador \n Contas'))),
+                      child: Text('Agenda de \n Contatos'))),
               ListTile(
                 leading: Text('Sair'),
                 trailing: Icon(Icons.exit_to_app),
