@@ -58,7 +58,7 @@ class _CriadorContato extends State<CriadorContato> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Agenda de contatos'),
+        title: Text(atualizar ? 'Modificar contato' : 'Inserir contato'),
       ),
       body: Form(
           key: globalKey,
@@ -68,10 +68,29 @@ class _CriadorContato extends State<CriadorContato> {
               child: Column(
                 children: [
                   TextFormField(
-                    initialValue: email,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    initialValue: nome,
+                    decoration: InputDecoration(
+                        labelText: 'Nome',
+                        icon: Icon(Icons.person),
+                        border: OutlineInputBorder()),
                     keyboardType: TextInputType.name,
-                    maxLength: 20,
+                    onSaved: (value) {
+                      nome = value;
+                    },
+                    validator: (value) {
+                      if (value.isEmpty)
+                        return 'Valor da conta inválido, digite o nome novamente!';
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 25),
+                  TextFormField(
+                    initialValue: email,
+                    decoration: InputDecoration(
+                        labelText: 'Email',
+                        icon: Icon(Icons.email),
+                        border: OutlineInputBorder()),
+                    keyboardType: TextInputType.name,
                     onSaved: (value) {
                       email = value;
                     },
@@ -84,9 +103,11 @@ class _CriadorContato extends State<CriadorContato> {
                   const SizedBox(height: 25),
                   TextFormField(
                     initialValue: endereco,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration: InputDecoration(
+                        labelText: 'Endereço',
+                        icon: Icon(Icons.location_city),
+                        border: OutlineInputBorder()),
                     keyboardType: TextInputType.name,
-                    maxLines: 2,
                     onSaved: (value) {
                       endereco = value;
                     },
@@ -98,26 +119,13 @@ class _CriadorContato extends State<CriadorContato> {
                   ),
                   const SizedBox(height: 25),
                   TextFormField(
-                    initialValue: nome,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder()),
-                    keyboardType: TextInputType.name,
-                    onSaved: (value) {
-                      nome = value;
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) 
-                        return 'Valor da conta inválido, digite o nome novamente!';
-                      return null;
-                    },
-                  ),
- 
-                  const SizedBox(height: 25),
-                  TextFormField(
                     initialValue: cep,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration: InputDecoration(
+                        labelText: 'CEP',
+                        icon: Icon(Icons.add_location),
+                        border: OutlineInputBorder()),
                     keyboardType: TextInputType.number,
-                    maxLength: 20,
+                    maxLength: 8,
                     onSaved: (value) {
                       cep = value;
                     },
@@ -130,9 +138,11 @@ class _CriadorContato extends State<CriadorContato> {
                   const SizedBox(height: 25),
                   TextFormField(
                     initialValue: telefone,
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration: InputDecoration(
+                        labelText: 'Telefone',
+                        icon: Icon(Icons.phone_android),
+                        border: OutlineInputBorder()),
                     keyboardType: TextInputType.number,
-                    maxLines: 2,
                     onSaved: (value) {
                       telefone = value;
                     },
@@ -142,8 +152,9 @@ class _CriadorContato extends State<CriadorContato> {
                       return null;
                     },
                   ),
-
-                  ElevatedButton(onPressed: criarContato, child: Text('Calcular'))
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                      onPressed: criarContato, child: Text('Confirmar'))
                 ],
               ),
             ),

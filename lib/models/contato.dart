@@ -8,8 +8,8 @@ class Contato with ChangeNotifier {
   String _cep;
   String _telefone;
 
-  Contato(this._id, this._nome, this._email, this._endereco,
-      this._cep, this._telefone);
+  Contato(this._id, this._nome, this._email, this._endereco, this._cep,
+      this._telefone);
 
   String get idContact {
     return this._id;
@@ -58,5 +58,4 @@ class Contato with ChangeNotifier {
   set telefone(String telefone) {
     this._telefone = telefone;
   }
-
 }

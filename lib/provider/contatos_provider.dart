@@ -17,43 +17,74 @@ class ContatosProvider with ChangeNotifier {
     return [..._items];
   }
 
+  Contato find(String id) =>
+      _items.firstWhere((element) => element.idContact == id);
+
   Future<void> getDados() async {
-    final allContacts = await storage.collection(mainCollection).doc(idUsuario).collection(subCollection).get();
+    final allContacts = await storage
+        .collection(mainCollection)
+        .doc(idUsuario)
+        .collection(subCollection)
+        .get();
     final userContacts = allContacts.docs;
-    if (userContacts.length == 0)
-      return;
+    if (userContacts.length == 0) return;
     _items = userContacts.map((e) {
       final contactData = e.data();
-      return Contato(e.id, contactData['nome'], contactData['email'], contactData['endereco'], contactData['cep'], contactData['telefone']);
+      return Contato(e.id, contactData['nome'], contactData['email'],
+          contactData['endereco'], contactData['cep'], contactData['telefone']);
     }).toList();
     notifyListeners();
   }
 
-  Future<void> add(
-    String nome, String email, String endereco, String cep, String telefone) async {
+  Future<void> add(String nome, String email, String endereco, String cep,
+      String telefone) async {
     final contatoID = DateTime.now().toIso8601String();
-    await storage.collection(mainCollection).doc(idUsuario).collection(subCollection).doc(contatoID).set({
-      'nome': nome , 'email': email , 'endereco': endereco , 'cep': cep , 'telefone': telefone
+    await storage
+        .collection(mainCollection)
+        .doc(idUsuario)
+        .collection(subCollection)
+        .doc(contatoID)
+        .set({
+      'nome': nome,
+      'email': email,
+      'endereco': endereco,
+      'cep': cep,
+      'telefone': telefone
     });
 
-    Contato novaConta = Contato(contatoID, nome, email, endereco, cep, telefone);
+    Contato novaConta =
+        Contato(contatoID, nome, email, endereco, cep, telefone);
     _items.add(novaConta);
     notifyListeners();
   }
 
   Future<void> remove(Contato contatoSelecionado) async {
     _items.remove(contatoSelecionado);
-    await storage.collection(mainCollection).doc(idUsuario).collection(subCollection).doc(contatoSelecionado.idContact).delete();    
+    await storage
+        .collection(mainCollection)
+        .doc(idUsuario)
+        .collection(subCollection)
+        .doc(contatoSelecionado.idContact)
+        .delete();
     notifyListeners();
   }
 
   Future<void> update(Contato contatoSelecionado) async {
-    final contaIndex = _items
-        .indexWhere((element) => element.idContact == contatoSelecionado.idContact);
+    final contaIndex = _items.indexWhere(
+        (element) => element.idContact == contatoSelecionado.idContact);
     if (contaIndex == -1) return false;
     _items[contaIndex] = contatoSelecionado;
-    await storage.collection(mainCollection).doc(idUsuario).collection(subCollection).doc(contatoSelecionado.idContact).update({
-      'nome': contatoSelecionado.nome , 'email': contatoSelecionado.email , 'endereco': contatoSelecionado.endereco , 'cep': contatoSelecionado.cep , 'telefone': contatoSelecionado.telefone
+    await storage
+        .collection(mainCollection)
+        .doc(idUsuario)
+        .collection(subCollection)
+        .doc(contatoSelecionado.idContact)
+        .update({
+      'nome': contatoSelecionado.nome,
+      'email': contatoSelecionado.email,
+      'endereco': contatoSelecionado.endereco,
+      'cep': contatoSelecionado.cep,
+      'telefone': contatoSelecionado.telefone
     });
     notifyListeners();
   }

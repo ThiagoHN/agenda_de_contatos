@@ -31,8 +31,8 @@ class _LoginState extends State<Login> {
             .logar(formmap['email'], formmap['senha']);
 
         if (!resultado) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('Os dados estão inválidos')));
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Os dados estão inválidos')));
         }
       } else {
         resultado = await Provider.of<UsuarioProvider>(context, listen: false)

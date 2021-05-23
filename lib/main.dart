@@ -1,5 +1,6 @@
 import 'package:agenda_de_contatos/provider/contatos_provider.dart';
 import 'package:agenda_de_contatos/provider/usuarios_provider.dart';
+import 'package:agenda_de_contatos/screens/contato_info.dart';
 import 'package:agenda_de_contatos/screens/login.dart';
 import 'package:agenda_de_contatos/screens/menu.dart';
 import 'package:agenda_de_contatos/screens/splashscreen.dart';
@@ -8,10 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-    
+
   runApp(MyApp());
 }
 
@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
         routes: {
           Login.routeName: (ctx) => Login(),
           Menu.routeName: (ctx) => Menu(),
+          ContatoInfo.routeName: (ctx) => ContatoInfo(),
         },
       ),
     );
